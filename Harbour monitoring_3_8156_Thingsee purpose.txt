@@ -13,14 +13,6 @@ Object: Impact >1.05 (g) <Acceleration> 3_8943
 	Direction: Any
 	Trigger if over (g): 1.05
 	Trigger if under (g): 0
-Object: SMS0(Thingsee battery level is below 10%) <Action> 3_8528
-	Send saved logs to cloud: F
-	Send event to: none
-	Send event to cloud URL: 
-	Send SMS message: 0(Thingsee battery level is below 10%)
-	Object: 0(Thingsee battery level is below 10%) <Send SMS message> 3_8416
-		To (phone number): 0
-		Message: Thingsee battery level is below 10%
 Object: SMS0(Update salt for dryer) <Action> 3_8719
 	Send saved logs to cloud: F
 	Send event to: none
@@ -37,9 +29,8 @@ Object: SMS0(Warning: water freezing.) <Action> 3_8736
 	Object: 0(Warning: water freezing.) <Send SMS message> 3_8730
 		To (phone number): 0
 		Message: Warning: water freezing.
-Object: <10%  <Battery> 3_8594
-	Trigger if battery over (%): 
-	Trigger if battery under (%): 10
+Object: Start monitoring <Display> 3_12459
+	Text shown: Start monitoring
 Object: >55 %rh <Humidity> 3_8625
 	Trigger if over (%rh): 55
 	Trigger if under (%rh): 
@@ -75,16 +66,8 @@ Object: < 2 C <Temperature> 3_8632
 	Trigger if under (celcius): 2
 Relationship:  <Transition> 3_8179
 	Name: 
+  Role: Action <Action>  Object: <Display> 3_12459
   Role: From <From>  Object: <State> 3_8053
-  Role: To <To>  Object: <State> 3_8332
-Relationship: Battery warning <Transition> 3_8384
-	Name: Battery warning
-  Role: Action <Action>  Object: <Action> 3_8528
-  Role: From <From>  Object: <State> 3_8332
-  Role: F <PollTrigger>  Object: <Battery> 3_8594
-	Log values to device: F
-	Poll values after every: 12
-	Poll unit: hours
   Role: To <To>  Object: <State> 3_8332
 Relationship:  <Transition> 3_8683
 	Name: 
@@ -101,7 +84,7 @@ Relationship:  <Transition> 3_8754
   Role: From <From>  Object: <State> 3_8332
   Role: F <PollTrigger>  Object: <Humidity> 3_8625
 	Log values to device: F
-	Poll values after every: 2
+	Poll values after every: 1
 	Poll unit: hours
   Role: To <To>  Object: <State> 3_8332
 Relationship:  <Transition> 3_8920
