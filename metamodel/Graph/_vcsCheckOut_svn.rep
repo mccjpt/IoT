@@ -1,0 +1,7 @@
+_vcsCheckOut_svn(@dbDir)
+/* Check out the old version, unzip the repository using @unzip, then revert to the HEAD */
+'
+TortoiseProc.exe /command:update /rev /path:"' $vcsWorkingDir '" /closeonend:3
+' _vcsRestoreDB(@dbDir) '
+svn update
+'

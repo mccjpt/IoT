@@ -1,0 +1,13 @@
+Graph_Thingsee_applications_user_3619123129
+My apps
+3_6791
+Thingsee Profile
+Graph: My apps <Thingsee Profile> 3_6791
+	Name: My apps
+	Description: 
+Object: Sauna ready <Purpose> 3_6782
+	Decomposed to: Sauna ready <Thingsee purpose>
+Object: Speeding Alert <Purpose> 3_6785
+	Decomposed to: Speeding Alert <Thingsee purpose>
+Object: Theft Alarm & Tracker <Purpose> 3_6788
+	Decomposed to: Theft Alarm & Tracker <Thingsee purpose>

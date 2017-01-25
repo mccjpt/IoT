@@ -1,0 +1,37 @@
+_vcsCheckIn(@vcsComment)
+/* Check in the current state of the repository into version control */
+
+/* Set paths for executables and versioning target */
+_vcsPaths()
+
+/* Output the version comment */
+filename 'vcsComment.txt' encoding 'UTF-8' write @vcsComment close
+
+/* Output the check-in script */
+filename $checkInScript write
+_vcsHeader()
+if $vcsExeDir then 'SET PATH=%PATH%;' $vcsExeDir newline endif 
+'set mepath=%cd%' newline
+if $use7zip OR $dbBackupDir <> __($vcsWorkingDir sep $dbBackupName) then
+	if $use7zip then
+		'"' $7zipExe '" a -r "' $vcsWorkingDir sep $dbBackupName '.7z" "' $dbBackupDir sep '*" || pause' newline
+	else
+		'xcopy /e /i /%xcopyDisplay% /z "' $dbBackupDir '" "' $vcsWorkingDir sep $dbBackupName '" || pause' newline
+	endif
+	'rd /s /q "' $dbBackupDir '"' newline
+endif
+'cd /d "' $vcsWorkingDir '"' newline
+
+subreport '_vcsCheckIn_' $vcs run
+
+if not $vcsDebug then
+	newline
+	'if not errorlevel 1 exit'
+endif
+
+/* ...and close the script file */
+close
+
+/* Execute the generated script file */
+external $checkInScript execute
+

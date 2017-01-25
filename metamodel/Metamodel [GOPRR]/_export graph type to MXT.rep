@@ -1,0 +1,16 @@
+Report '_export graph type to MXT'
+'<graph description="'
+subreport '_typeDescription' run
+foreach .Object [GOPRR]{if :Occurrence; <> '0' then subreport '_types' run endif}
+foreach .Object set [GOPRR]; {do :Objects; {if :Occurrence; <> '0' then subreport '_types' run endif }}
+foreach >Binding [GOPRR] {do :Relationship; {subreport '_types' run}}
+foreach ~(First role [GOPRR]|Intermediate role [GOPRR]|Last role [GOPRR]) { do :Role; {subreport '_types' run}}
+foreach >Binding [GOPRR] { subreport '_bindings' run}
+foreach ~Last role [GOPRR]; where :Can be drawn in both directions; = 'T' { 	subreport '_reverse role order' run
+} 
+_liveCheck()
+subreport '_constraints' run
+if type;2 <> 'Metamodel for multiple graphs [GOPRR]' then
+	'</graph>' newline
+endif
+endreport

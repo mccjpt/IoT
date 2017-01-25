@@ -1,0 +1,13 @@
+_vcsInit_git()
+'
+git init --shared || pause
+echo manager.ab binary>>.gitattributes || pause
+git config --local core.autocrlf ' _vcs_git_autocrlf() '
+git add -A || pause
+git commit -m "Imported new empty directory as basis for new MetaEdit+ repository ' $dbName '" || pause
+'
+if $gitProjectURL then
+	'git config credential.helper wincred || pause' newline
+	'git remote add origin ' $gitProjectURL ' || pause' newline
+	'git push -u origin master || pause' newline
+endif

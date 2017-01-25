@@ -1,0 +1,59 @@
+_vcsSync_svn()
+/* To get the revision of the current DB, look up its version comment first in the local .svn and then in the remote SVN repository, since we don't know which has the more up-to-date history */
+'
+pushd ' $vcsWorkingDir '
+
+rem Display and collect the current version in all our various places
+set DBVER=
+for /f "usebackq skip=1 tokens=1 delims=r " %%i in (`svn log --search "%msg%" --incremental`) do if not defined DBVER set DBVER=%%i
+if not defined DBVER for /f "usebackq skip=1 tokens=1 delims=r " %%i in (`svn log ' $svnProjectURL ' --search "%msg%" --incremental`) do if not defined DBVER set DBVER=%%i
+
+if not defined DBVER (
+	echo Current DB revision not found locally or remotely: solve manually
+	exit /B 1
+)
+
+set LOCALVER=
+for /f "usebackq skip=1 tokens=1 delims=r " %%i in (`svn log --limit 1 --quiet --incremental`) do if not defined LOCALVER set LOCALVER=%%i
+
+set REMOTEVER=
+for /f "usebackq skip=1 tokens=1 delims=r " %%i in (`svn log ' $svnProjectURL ' --limit 1 --quiet --incremental`) do if not defined REMOTEVER set REMOTEVER=%%i
+
+rem Compare local VCS with remote VCS, pull/push if necessary
+if "%LOCALVER%"=="%REMOTEVER%" (
+	echo Local .svn in sync with remote
+) ELSE (
+	if "%LOCALVER%" LSS "%REMOTEVER%" (
+		echo Need to pull
+		TortoiseProc.exe /command:cleanup /path:"%CD%" /delunversioned /delignored /revert /nodlg /noprogressui /noui
+		svn update
+	) ELSE (
+		echo Need to push or has diverged: solve manually
+		exit /B 2
+)	)
+
+rem Now compare local DB with remote VCS
+if "%DBVER%"=="%REMOTEVER%" (
+	if "%vcsDirty%"=="" (
+		echo DB version matches remote SVN, no unversioned model changes in DB
+	) ELSE (
+		echo DB version matches remote SVN, but DB has unversioned changes
+	)
+) ELSE (
+	if "%DBVER%" LSS "%REMOTEVER%" (
+		if "%vcsDirty%"=="" (
+			echo DB version is older than remote SVN, no unversioned model changes in DB: copy from SVN
+		) ELSE (
+			call :pause !\n!DANGER: DB version is older than remote SVN, but DB has unversioned changes.!\n!  Press Enter to discard those changes and continue, or !\n!  press Ctrl+C and answer yes to abort
+		)
+		popd
+		if exist "' $dbDir '" call :pause !\n!DANGER: Older ' $dbDir ' already exists, about to replace - !\n!  exit MetaEdit+ and press Enter to continue, or !\n!  press Ctrl+C and answer yes to abort
+		rd /s /q "' $dbDir '"
+		pushd ' $vcsWorkingDir newline
+		do _vcsRestoreDB($dbDir) {'		' id newline} '
+	) ELSE (
+		rem should not happen with SVN
+		echo DB version is in remote SVN, but remote HEAD is an older version: solve manually
+		exit /B 3
+	)
+)'

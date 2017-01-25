@@ -1,0 +1,12 @@
+_EcoreAttribute()
+@id = '1'
+do :Properties {
+	'		<eStructuralFeatures xsi:type="ecore:EAttribute" name="':Property name;
+	'" lowerBound="0" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//E'
+	:Datatype%ecore
+	'"' newline
+   '			defaultValueLiteral="" iD="'
+	if @id = '1' then 'true' else 'false' endif
+	'"/>' newline
+	@id++%null
+}

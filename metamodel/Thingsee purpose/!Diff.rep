@@ -1,0 +1,20 @@
+!Diff()
+
+$testThis = 'F'
+foreach .TestElement {$testThis = 'T'}
+if $testThis = 'T' then
+	filename 'expected.txt' write
+	foreach .TestElement {
+		:Description
+	}
+	close
+
+	filename 'generated.txt' write
+		ThingseeAppCode()
+	close
+
+	external '"C:\Program Files (x86)\ComponentSoftware\CSDiff\CSDiff.exe" /bI /n	expected.txt generated.txt' execute
+
+else
+	'Add test element with expected code to the model and run diff again.'
+endif

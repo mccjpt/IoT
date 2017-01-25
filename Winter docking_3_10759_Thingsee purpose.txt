@@ -1,0 +1,265 @@
+Graph_Thingsee_app_sysadmin_3617045505
+Winter docking
+3_10759
+Thingsee purpose
+Graph: Winter docking <Thingsee purpose> 3_10759
+	Name: Winter docking
+	Description: 
+Object: Impact >1.05 (g) <Acceleration> 3_11361
+	Direction: Any
+	Trigger if over (g): 1.05
+	Trigger if under (g): 0
+Object: SMS0(Update salt for dryer) <Action> 3_11431
+	Send saved logs to cloud: F
+	Send event to: none
+	Send event to cloud URL: 
+	Send SMS message: 0(Update salt for dryer)
+	Object: 0(Update salt for dryer) <Send SMS message> 3_11449
+		To (phone number): 0
+		Message: Update salt for dryer
+Object: SMS0(Battery level is below 10%) <Action> 3_11589
+	Send saved logs to cloud: F
+	Send event to: none
+	Send event to cloud URL: 
+	Send SMS message: 0(Battery level is below 10%)
+	Object: 0(Battery level is below 10%) <Send SMS message> 3_11607
+		To (phone number): 0
+		Message: Battery level is below 10%
+Object: SMS0(Boat is not in harbour!) <Action> 3_11767
+	Send saved logs to cloud: F
+	Send event to: none
+	Send event to cloud URL: 
+	Send SMS message: 0(Boat is not in harbour!)
+	Object: 0(Boat is not in harbour!) <Send SMS message> 3_11785
+		To (phone number): 0
+		Message: Boat is not in harbour!
+Object: Save logs, push notification <Action> 3_11947
+	Send saved logs to cloud: T
+	Send event to: push notification
+	Send event to cloud URL: 
+	Send SMS message: 
+Object: SMS0(Spring time monitoring started) <Action> 3_12053
+	Send saved logs to cloud: F
+	Send event to: none
+	Send event to cloud URL: 
+	Send SMS message: 0(Spring time monitoring started)
+	Object: 0(Spring time monitoring started) <Send SMS message> 3_12071
+		To (phone number): 0
+		Message: Spring time monitoring started
+Object: SMS0(Boat is back in harbour) <Action> 3_12109
+	Send saved logs to cloud: F
+	Send event to: none
+	Send event to cloud URL: 
+	Send SMS message: 0(Boat is back in harbour)
+	Object: 0(Boat is back in harbour) <Send SMS message> 3_11711
+		To (phone number): 0
+		Message: Boat is back in harbour
+Object: SMS0(To cold to start spring preparations.) <Action> 3_12155
+	Send saved logs to cloud: F
+	Send event to: none
+	Send event to cloud URL: 
+	Send SMS message: 0(To cold to start spring preparations.)
+	Object: 0(To cold to start spring preparations.) <Send SMS message> 3_12145
+		To (phone number): 0
+		Message: To cold to start spring preparations.
+Object: <10%  <Battery> 3_11619
+	Trigger if battery over (%): 
+	Trigger if battery under (%): 10
+Object: cal not set <Calendar> 3_10790
+	Month: 4
+	Day: 15
+	Year: 2016
+	Hour: 13
+	Minute: 00
+	Second: 00
+	Trigger when time is after (8/15/2015 12:00:00): 
+Object: disconnected from charger <Charger> 3_10807
+	Trigger when: disconnected from charger
+Object: Winter docking mode started. <Display> 3_12091
+	Text shown: Winter docking mode started.
+Object: 62.21563545779646,
+25.759077072143555,
+62.21593552804997,
+25.760793685913086,
+62.21525536452692,
+25.76242446899414,
+62.21421508479132,
+25.76096534729004,
+62.21439513577228,
+25.758261680603027,
+62.214935282272315,
+25.75817584991455 inside geofence <Geofence> 3_11529
+	Geofence value: 62.21563545779646,
+25.759077072143555,
+62.21593552804997,
+25.760793685913086,
+62.21525536452692,
+25.76242446899414,
+62.21421508479132,
+25.76096534729004,
+62.21439513577228,
+25.758261680603027,
+62.214935282272315,
+25.75817584991455
+	Trigger if: inside geofence
+Object: 62.21563545779646,
+25.759077072143555,
+62.21593552804997,
+25.760793685913086,
+62.21525536452692,
+25.76242446899414,
+62.21421508479132,
+25.76096534729004,
+62.21439513577228,
+25.758261680603027,
+62.214935282272315,
+25.75817584991455 outside geofence <Geofence> 3_11809
+	Geofence value: 62.21563545779646,
+25.759077072143555,
+62.21593552804997,
+25.760793685913086,
+62.21525536452692,
+25.76242446899414,
+62.21421508479132,
+25.76096534729004,
+62.21439513577228,
+25.758261680603027,
+62.214935282272315,
+25.75817584991455
+	Trigger if: outside geofence
+Object: >55 %rh <Humidity> 3_11419
+	Trigger if over (%rh): 55
+	Trigger if under (%rh): 
+Object: Loc <Location> 3_11931
+	Trigger: when sense has any value
+	Trigger if over (meters): 
+	Trigger if under (meters): 
+Object: Docking monitor <State> 3_11337
+	Name: Docking monitor
+	Start state: F
+	Always active: F
+	Description: 
+Object: Bump detection <State> 3_11377
+	Name: Bump detection
+	Start state: F
+	Always active: F
+	Description: 
+Object: Area check <State> 3_11487
+	Name: Area check
+	Start state: F
+	Always active: F
+	Description: 
+Object: Tracking area <State> 3_11819
+	Name: Tracking area
+	Start state: F
+	Always active: F
+	Description: 
+Object: Initialize <State> 3_11993
+	Name: Initialize
+	Start state: T
+	Always active: F
+	Description: 
+Object: > 10 C <Temperature> 3_12019
+	Trigger if over (celcius): 10
+	Trigger if under (celcius): 
+Object: < 5 C <Temperature> 3_12137
+	Trigger if over (celcius): 
+	Trigger if under (celcius): 5
+Object: 3 sec <Timer> 3_11479
+	Trigger timer after (sec): 3
+Relationship:  <Transition> 3_11329
+	Name: 
+  Role: From <From>  Object: <State> 3_11337
+  Role: To <To>  Object: <State> 3_11377
+  Role: F <Trigger>  Object: <Acceleration> 3_11361
+	Log values to device: F
+Relationship:  <Transition> 3_11397
+	Name: 
+  Role: Action <Action>  Object: <Action> 3_11431
+  Role: From <From>  Object: <State> 3_11337
+  Role: F <PollTrigger>  Object: <Humidity> 3_11419
+	Log values to device: F
+	Poll values after every: 10
+	Poll unit: hours
+  Role: To <To>  Object: <State> 3_11337
+Relationship:  <Transition> 3_11465
+	Name: 
+  Role: From <From>  Object: <State> 3_11377
+  Role: To <To>  Object: <State> 3_11487
+  Role: F <Trigger>  Object: <Timer> 3_11479
+	Log values to device: F
+Relationship:  <Transition> 3_11507
+	Name: 
+  Role: From <From>  Object: <State> 3_11487
+  Role: F <PollTrigger>  Object: <Geofence> 3_11529
+	Log values to device: F
+	Poll values after every: 1
+	Poll unit: seconds
+  Role: To <To>  Object: <State> 3_11337
+Relationship:  <Transition> 3_11725
+	Name: 
+  Role: Action <Action>  Object: <Action> 3_11589
+  Role: From <From>  Object: <State> 3_11337
+  Role: F <PollTrigger>  Object: <Battery> 3_11619
+	Log values to device: F
+	Poll values after every: 7
+	Poll unit: dates
+  Role: F <PollTrigger>  Object: <Charger> 3_10807
+	Log values to device: F
+	Poll values after every: 7
+	Poll unit: dates
+  Role: To <To>  Object: <State> 3_11337
+Relationship: At sea <Transition> 3_11759
+	Name: At sea
+  Role: Action <Action>  Object: <Action> 3_11767
+  Role: From <From>  Object: <State> 3_11487
+  Role: F <PollTrigger>  Object: <Geofence> 3_11809
+	Log values to device: F
+	Poll values after every: 1
+	Poll unit: seconds
+  Role: To <To>  Object: <State> 3_11819
+Relationship:  <Transition> 3_11911
+	Name: 
+  Role: Action <Action>  Object: <Action> 3_11947
+  Role: From <From>  Object: <State> 3_11819
+  Role: F <PollTrigger>  Object: <Location> 3_11931
+	Log values to device: F
+	Poll values after every: 1
+	Poll unit: minutes
+  Role: To <To>  Object: <State> 3_11819
+Relationship:  <Transition> 3_12045
+	Name: 
+  Role: Action <Action>  Object: <Action> 3_12053
+  Role: From <From>  Object: <State> 3_11337
+  Role: F <PollTrigger>  Object: <Temperature> 3_12019
+	Log values to device: F
+	Poll values after every: 1
+	Poll unit: hours
+  Role: To <To>  Object: <State> 3_11337
+  Role: F <Trigger>  Object: <Calendar> 3_10790
+	Log values to device: F
+Relationship:  <Transition> 3_12085
+	Name: 
+  Role: Action <Action>  Object: <Display> 3_12091
+  Role: From <From>  Object: <State> 3_11993
+  Role: To <To>  Object: <State> 3_11337
+Relationship:  <Transition> 3_12101
+	Name: 
+  Role: Action <Action>  Object: <Action> 3_12109
+  Role: From <From>  Object: <State> 3_11819
+  Role: F <PollTrigger>  Object: <Geofence> 3_11529
+	Log values to device: F
+	Poll values after every: 15
+	Poll unit: minutes
+  Role: To <To>  Object: <State> 3_11337
+Relationship:  <Transition> 3_12173
+	Name: 
+  Role: Action <Action>  Object: <Action> 3_12155
+  Role: From <From>  Object: <State> 3_11337
+  Role: F <PollTrigger>  Object: <Temperature> 3_12137
+	Log values to device: F
+	Poll values after every: 1
+	Poll unit: hours
+  Role: To <To>  Object: <State> 3_11337
+  Role: F <Trigger>  Object: <Calendar> 3_10790
+	Log values to device: F

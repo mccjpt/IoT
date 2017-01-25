@@ -1,0 +1,37 @@
+Report '_nonProperties'
+if metatype <> 'Graph' then
+do ~Has property [GOPRR]>() {
+	'<slot id="p' oid
+	'" name="'
+	if :Local name; then :Local name%xml; else 
+		do ~NonProperty of [GOPRR].Object [GOPRR] {id%xml;}
+	endif
+	'" unique="' if :Uniqueness; = 'globally' then 'true' else 'false' endif '">' newline
+	'<property id="Property_' :Local name%xml; 
+	do ~NonProperty of [GOPRR]; {
+		if :Collection; then 's' endif
+		'_'
+		do .Object [GOPRR] {
+			oid '" typeName="' id%xml;}
+	if :Collection; then 's' endif
+	}
+	'">' newline
+	'<dataType>' newline
+	do ~NonProperty of [GOPRR] {
+		if :Collection; then 
+			'<simpleType>OrderedCollection</simpleType>' newline 
+			'</dataType>' newline
+			'<contentsDataType>' newline
+		endif
+		do .() {subreport '_types' run}
+		if :Collection; then
+			'</contentsDataType>' newline
+		else
+			'</dataType>' newline
+		endif
+ 	}
+	'</property>' newline
+   '</slot>' newline
+}
+endif
+endreport

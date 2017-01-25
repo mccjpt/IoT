@@ -1,0 +1,8 @@
+ToEcore()
+_ToEcoreTranslators()
+
+filename id%var '.ecore' write
+_EcoreHeader()
+_EcoreClassifiers()
+_EcoreFooter()	
+close 

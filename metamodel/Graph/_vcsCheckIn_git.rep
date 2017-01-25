@@ -1,0 +1,32 @@
+_vcsCheckIn_git()
+if $gitProjectURL and $vcsRebase then 
+'
+git remote update || pause
+for /f "tokens=*" %%i in (''git rev-parse @'') do set LOCALVER=%%i || pause
+for /f "tokens=*" %%i in (''git rev-parse @{u}'') do set REMOTEVER=%%i || pause
+for /f "tokens=*" %%i in (''git merge-base @ @{u}'') do set BASEVER=%%i || pause
+rem Compare local VCS with remote VCS, rebase on latest if necessary
+if "%LOCALVER%"=="%REMOTEVER%" (
+	echo Local .git up to date
+) ELSE (
+	if "%LOCALVER%"=="%BASEVER%" (
+		echo Want to publish after latest remote version and based on it
+		git reset --soft origin/master || pause
+	) ELSE (
+		if "%REMOTEVER%"=="%BASEVER%" (
+			echo Need to push; will happen after commit anyway
+		) ELSE (
+			echo Diverged: solve manually
+			exit /B 2
+)	)	)
+'
+endif
+'
+git add -A || pause
+git commit -F "%mepath%\vcsComment.txt" >commitOutput.tmp 2>&1
+' /* Use a temporary file so we can filter out uninteresting commit output */
+'if errorlevel 1 (type commitOutput.tmp && del commitOutput.tmp && pause) else (type commitOutput.tmp | find /V "' $dbBackupName '/" && del commitOutput.tmp)
+'
+if $gitProjectURL then 
+	'git push -u --force-with-lease origin master || pause' newline
+endif

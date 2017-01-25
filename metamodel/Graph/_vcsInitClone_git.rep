@@ -1,0 +1,7 @@
+_vcsInitClone_git()
+'
+git clone'
+' --config credential.helper=wincred'
+' --config core.sharedRepository=true'
+' --config core.autocrlf=' _vcs_git_autocrlf() 
+' ' $gitProjectURL ' || pause'

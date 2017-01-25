@@ -1,0 +1,18 @@
+_vcsHeader()
+_vcsDebug()
+'goto run
+
+rem allow pause in blocks & custom msg http://superuser.com/a/1142433/132953
+:pause
+setlocal EnableDelayedExpansion
+(set \n=^
+%=Do not remove this line=%
+)
+echo %*
+set \n=
+setlocal DisableDelayedExpansion
+pause >nul
+exit /b
+
+:run
+'

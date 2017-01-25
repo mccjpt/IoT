@@ -1,0 +1,6 @@
+_sensorIcons()
+do decompositions {
+	foreach .(^State | ^Other Purpose | ^Comment | ^TestElement ) unique type {
+		oid newline
+	}
+}

@@ -1,0 +1,203 @@
+Graph_Thingsee_app_sysadmin_3617045505
+Bump monitoring
+3_8966
+Thingsee purpose
+Graph: Bump monitoring <Thingsee purpose> 3_8966
+	Name: Bump monitoring
+	Description: 
+Object: Vertical >1.05 (g) <Acceleration> 3_8852
+	Direction: Vertical
+	Trigger if over (g): 1.05
+	Trigger if under (g): 0
+Object: Vertical >1.05 (g) <Acceleration> 3_8872
+	Direction: Vertical
+	Trigger if over (g): 1.05
+	Trigger if under (g): 0
+Object: SMS0(Boat is back in harbour) <Action> 3_8288
+	Send saved logs to cloud: F
+	Send event to: none
+	Send event to cloud URL: 
+	Send SMS message: 0(Boat is back in harbour)
+	Object: 0(Boat is back in harbour) <Send SMS message> 3_8238
+		To (phone number): 0
+		Message: Boat is back in harbour
+Object: SMS0(Boat is not in harbour!) <Action> 3_8452
+	Send saved logs to cloud: F
+	Send event to: none
+	Send event to cloud URL: 
+	Send SMS message: 0(Boat is not in harbour!)
+	Object: 0(Boat is not in harbour!) <Send SMS message> 3_8248
+		To (phone number): 0
+		Message: Boat is not in harbour!
+Object: Save logs, push notification <Action> 3_8496
+	Send saved logs to cloud: T
+	Send event to: push notification
+	Send event to cloud URL: 
+	Send SMS message: 
+Object: Save logs, cloud <Action> 3_9136
+	Send saved logs to cloud: T
+	Send event to: cloud
+	Send event to cloud URL: 
+	Send SMS message: 
+Object: movement specific to mounting <Comment> 3_9169
+	Description: movement specific to mounting
+Object: To track traffic and adjust to waves <Comment> 3_9296
+	Description: To track traffic and adjust to waves
+Object: 62.21563545779646,
+25.759077072143555,
+62.21593552804997,
+25.760793685913086,
+62.21525536452692,
+25.76242446899414,
+62.21421508479132,
+25.76096534729004,
+62.21439513577228,
+25.758261680603027,
+62.214935282272315,
+25.75817584991455 inside geofence <Geofence> 3_8320
+	Geofence value: 62.21563545779646,
+25.759077072143555,
+62.21593552804997,
+25.760793685913086,
+62.21525536452692,
+25.76242446899414,
+62.21421508479132,
+25.76096534729004,
+62.21439513577228,
+25.758261680603027,
+62.214935282272315,
+25.75817584991455
+	Trigger if: inside geofence
+Object: 62.21563545779646,
+25.759077072143555,
+62.21593552804997,
+25.760793685913086,
+62.21525536452692,
+25.76242446899414,
+62.21421508479132,
+25.76096534729004,
+62.21439513577228,
+25.758261680603027,
+62.214935282272315,
+25.75817584991455 outside geofence <Geofence> 3_8426
+	Geofence value: 62.21563545779646,
+25.759077072143555,
+62.21593552804997,
+25.760793685913086,
+62.21525536452692,
+25.76242446899414,
+62.21421508479132,
+25.76096534729004,
+62.21439513577228,
+25.758261680603027,
+62.214935282272315,
+25.75817584991455
+	Trigger if: outside geofence
+Object: Loc <Location> 3_8514
+	Trigger: when sense has any value
+	Trigger if over (meters): 
+	Trigger if under (meters): 
+Object: Monitoring <Other Purpose> 3_9131
+	State in other purpose: Monitoring
+	Object: Monitoring <State> 3_8332
+		Name: Monitoring
+		Start state: F
+		Always active: F
+		Description: 
+Object: Tracking area <State> 3_8268
+	Name: Tracking area
+	Start state: F
+	Always active: F
+	Description: 
+Object: Area check <State> 3_8364
+	Name: Area check
+	Start state: F
+	Always active: F
+	Description: 
+Object: Bump detection <State> 3_8976
+	Name: Bump detection
+	Start state: T
+	Always active: F
+	Description: 
+Object: Vertical movement <State> 3_9260
+	Name: Vertical movement
+	Start state: F
+	Always active: F
+	Description: 
+Object: Waves detected <State> 3_9376
+	Name: Waves detected
+	Start state: F
+	Always active: F
+	Description: 
+Object: 5 sec <Timer> 3_9287
+	Trigger timer after (sec): 5
+Object: 3 sec <Timer> 3_9301
+	Trigger timer after (sec): 3
+Object: 10 sec <Timer> 3_10484
+	Trigger timer after (sec): 10
+Relationship: At sea <Transition> 3_9005
+	Name: At sea
+  Role: Action <Action>  Object: <Action> 3_8452
+  Role: From <From>  Object: <State> 3_8364
+  Role: F <PollTrigger>  Object: <Geofence> 3_8426
+	Log values to device: F
+	Poll values after every: 1
+	Poll unit: seconds
+  Role: To <To>  Object: <State> 3_8268
+Relationship:  <Transition> 3_9048
+	Name: 
+  Role: Action <Action>  Object: <Action> 3_8288
+  Role: From <From>  Object: <State> 3_8268
+  Role: F <PollTrigger>  Object: <Geofence> 3_8320
+	Log values to device: F
+	Poll values after every: 15
+	Poll unit: minutes
+  Role: To <To>  Object: <Other Purpose> 3_9131
+Relationship:  <Transition> 3_9069
+	Name: 
+  Role: From <From>  Object: <State> 3_8364
+  Role: F <PollTrigger>  Object: <Geofence> 3_8320
+	Log values to device: F
+	Poll values after every: 1
+	Poll unit: seconds
+  Role: To <To>  Object: <Other Purpose> 3_9131
+Relationship:  <Transition> 3_9090
+	Name: 
+  Role: Action <Action>  Object: <Action> 3_9136
+  Role: From <From>  Object: <State> 3_9260
+  Role: To <To>  Object: <State> 3_9376
+  Role: F <Trigger>  Object: <Acceleration> 3_8872
+	Log values to device: F
+  Role: F <Trigger>  Object: <Timer> 3_9287
+	Log values to device: F
+Relationship:  <Transition> 3_9114
+	Name: 
+  Role: From <From>  Object: <State> 3_8976
+  Role: To <To>  Object: <State> 3_8364
+  Role: F <Trigger>  Object: <Timer> 3_9301
+	Log values to device: F
+Relationship:  <Transition> 3_9176
+	Name: 
+  Role: Action <Action>  Object: <Action> 3_8496
+  Role: From <From>  Object: <State> 3_8268
+  Role: F <PollTrigger>  Object: <Location> 3_8514
+	Log values to device: F
+	Poll values after every: 1
+	Poll unit: minutes
+  Role: To <To>  Object: <State> 3_8268
+Relationship:  <Transition> 3_9271
+	Name: 
+  Role: From <From>  Object: <State> 3_8976
+  Role: To <To>  Object: <State> 3_9260
+  Role: F <Trigger>  Object: <Acceleration> 3_8852
+	Log values to device: F
+Relationship:  <Transition> 3_9425
+	Name: 
+  Role: From <From>  Object: <State> 3_9376
+  Role: To <To>  Object: <Other Purpose> 3_9131
+Relationship:  <Transition> 3_10473
+	Name: 
+  Role: From <From>  Object: <State> 3_9260
+  Role: To <To>  Object: <Other Purpose> 3_9131
+  Role: F <Trigger>  Object: <Timer> 3_10484
+	Log values to device: F

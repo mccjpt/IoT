@@ -1,0 +1,13 @@
+Graph_Thingsee_applications_user_3619123129
+Boat Monitor
+3_7989
+Thingsee Profile
+Graph: Boat Monitor <Thingsee Profile> 3_7989
+	Name: Boat Monitor
+	Description: Application to check boat status in harbor and while sailing
+Object: Sailing <Purpose> 3_7999
+	Decomposed to: Sailing <Thingsee purpose>
+Object: Harbour monitoring <Purpose> 3_8153
+	Decomposed to: Harbour monitoring <Thingsee purpose>
+Object: Bump monitoring <Purpose> 3_8952
+	Decomposed to: Bump monitoring <Thingsee purpose>

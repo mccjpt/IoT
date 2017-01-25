@@ -1,0 +1,68 @@
+Graph_Thingsee_app_sysadmin_3617045505
+Sailing
+3_8006
+Thingsee purpose
+Graph: Sailing <Thingsee purpose> 3_8006
+	Name: Sailing
+	Description: Sends sailing information to cloud
+Object: Impact >1.5 (g) <Acceleration> 3_8899
+	Direction: Any
+	Trigger if over (g): 1.5
+	Trigger if under (g): 0
+Object: Save logs, push notification <Action> 3_8079
+	Send saved logs to cloud: T
+	Send event to: push notification
+	Send event to cloud URL: 
+	Send SMS message: 
+Object: Enjoy sailing! <Display> 3_8114
+	Text shown: Enjoy sailing!
+Object: Starting harbour monitoring! <Display> 3_9217
+	Text shown: Starting harbour monitoring!
+Object: 2 lux <Luminance> 3_8908
+	Trigger if over (lux): 
+	Trigger if under (lux): 2
+Object: InHarbour <Other Purpose> 3_8063
+	State in other purpose: InHarbour
+	Object: InHarbour <State> 3_8053
+		Name: InHarbour
+		Start state: T
+		Always active: F
+		Description: 
+Object: >1  km/h <Speed> 3_8038
+	Trigger if over (km/h): 1
+	Trigger if under (km/h): 
+Object: Sailing <State> 3_8016
+	Name: Sailing
+	Start state: F
+	Always active: F
+	Description: 
+Object: InitializeSailing <State> 3_8092
+	Name: InitializeSailing
+	Start state: T
+	Always active: F
+	Description: 
+Relationship:  <Transition> 3_8027
+	Name: 
+  Role: Action <Action>  Object: <Action> 3_8079
+  Role: From <From>  Object: <State> 3_8016
+  Role: F <PollTrigger>  Object: <Speed> 3_8038
+	Log values to device: F
+	Poll values after every: 10
+	Poll unit: seconds
+  Role: To <To>  Object: <State> 3_8016
+Relationship:  <Transition> 3_8068
+	Name: 
+  Role: Action <Action>  Object: <Display> 3_9217
+  Role: From <From>  Object: <State> 3_8016
+  Role: F <PollTrigger>  Object: <Luminance> 3_8908
+	Log values to device: F
+	Poll values after every: 5
+	Poll unit: seconds
+  Role: To <To>  Object: <Other Purpose> 3_8063
+  Role: F <Trigger>  Object: <Acceleration> 3_8899
+	Log values to device: F
+Relationship:  <Transition> 3_8103
+	Name: 
+  Role: Action <Action>  Object: <Display> 3_8114
+  Role: From <From>  Object: <State> 3_8092
+  Role: To <To>  Object: <State> 3_8016

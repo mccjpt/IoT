@@ -1,0 +1,64 @@
+_vcsSync_git()
+'
+pushd ' $vcsWorkingDir '
+
+rem Fetch latest info into .git, without changing current HEAD or workingDir
+git remote update || pause
+
+rem Display and collect the current version in all our various places
+git status -uno || pause
+set DBVER=
+for /f "tokens=*" %%i in (''git log -1 -F "--grep=%msg%" "--format=%%H"'') do set DBVER=%%i || pause
+if not defined DBVER (
+	echo Current DB version not found: solve manually
+	exit /B 1
+)
+
+for /f "tokens=*" %%i in (''git rev-parse @'') do set LOCALVER=%%i || pause
+for /f "tokens=*" %%i in (''git rev-parse @{u}'') do set REMOTEVER=%%i || pause
+for /f "tokens=*" %%i in (''git merge-base @ @{u}'') do set BASEVER=%%i || pause
+for /f "tokens=*" %%i in (''git merge-base %DBVER% @{u}'') do set DBBASEVER=%%i || pause
+
+rem Compare local VCS with remote VCS, pull/push if necessary
+if "%LOCALVER%"=="%REMOTEVER%" (
+	echo Local .git up to date
+) ELSE (
+	if "%LOCALVER%"=="%BASEVER%" (
+		echo Need to pull
+		git stash save --all || pause
+		git fetch origin || pause
+		git reset --hard origin/master || pause
+	) ELSE (
+		if "%REMOTEVER%"=="%BASEVER%" (
+			echo Need to push
+			git push -u --force-with-lease origin master || pause
+			exit /B
+		) ELSE (
+			echo Diverged: solve manually
+			exit /B 2
+)	)	)
+
+rem Now compare local DB with remote VCS
+if "%DBVER%"=="%REMOTEVER%" (
+	if "%vcsDirty%"=="" (
+		echo DB version matches remote git, no unversioned model changes in DB
+	) ELSE (
+		echo DB version matches remote git, but DB has unversioned changes
+	)
+) ELSE (
+	if "%DBVER%"=="%DBBASEVER%" (
+		if "%vcsDirty%"=="" (
+			echo DB version is older than remote git, no unversioned model changes in DB: copy from git
+		) ELSE (
+			call :pause !\n!DANGER: DB version is older than remote git, but DB has unversioned changes.!\n!  Press Enter to discard those changes and continue, or!\n!  press Ctrl+C and answer yes to abort
+		)
+		popd
+		if exist "' $dbDir '" call :pause !\n!DANGER: ' $dbDir ' already exists, about to replace - !\n!  exit MetaEdit+ and press Enter to continue, or !\n!  press Ctrl+C and answer yes to abort
+		rd /s /q "' $dbDir '"
+		pushd ' $vcsWorkingDir newline
+		do _vcsRestoreDB($dbDir) { '		' id newline } '
+	) ELSE (
+		echo DB version is in remote git, but remote HEAD is an older version: solve manually
+		exit /B 3
+	)
+)'

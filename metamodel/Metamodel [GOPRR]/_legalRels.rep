@@ -1,0 +1,21 @@
+_legalRels()
+'<report>_legalRels()
+variable ''relTypes'' write
+'''
+' '
+@elems = '' ''
+foreach >Binding [GOPRR]; { 
+	if not @elems =~ id%var%wildsp; then
+		local 'elems' append id%var ' ' close
+		id%var ' '
+	endif
+}
+'''
+close
+foreach >() {
+	if not $relTypes =~ type%var%wildsp then
+		''Error: '' type '' is not legal relationhip type in this graph'' newline
+	endif
+}
+</report>
+'

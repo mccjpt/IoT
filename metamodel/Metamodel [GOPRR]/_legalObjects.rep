@@ -1,0 +1,27 @@
+_legalObjects()
+'<report>_legalObjects()
+variable ''objectTypes'' write
+'''
+' '
+@elems = '' ''
+foreach .Object [GOPRR]; { 
+	local 'elems' append id%var ' ' close
+	id%var ' '
+}
+foreach .Object set [GOPRR] {
+	do :Objects {
+		if not @elems =~ id%var%wildsp; then
+			local 'elems' append id%var ' ' close
+			id%var ' '
+		endif
+	}
+}
+'''
+close
+foreach .() {
+	if not $objectTypes =~ type%var%wildsp then
+		''Error: '' type '' is not legal object type in this graph'' newline
+	endif
+}
+</report>
+'

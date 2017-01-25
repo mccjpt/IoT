@@ -1,0 +1,11 @@
+Report '_types'
+/* compares if type already reported and adds it to the variable of reported types */
+'<' type;%tag; 
+if not $types =~ oid%wildsp then
+	variable 'types' append oid ' ' close
+	' description="' subreport '_typeDescription' run
+else
+	' href="#' subreport '_type_name_oid' run '">'
+endif
+'</' type;%tag; '>' newline
+endreport

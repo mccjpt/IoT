@@ -1,0 +1,17 @@
+_legalProp(@metatype, @type)
+'<report>_legalProp(@metatype, @type)
+local '' propTypes '' write
+'''
+' '
+do :() {	id%var ' ' }
+'''
+close
+foreach .(); where type%var = @type {
+	do :() {
+		if not type%var =~ $propTypes then 
+			''Error: '' type '' is not legal property type for '' type;1 newline
+		endif
+	}
+}
+</report>
+'

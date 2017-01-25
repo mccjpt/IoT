@@ -1,0 +1,656 @@
+Graph_Thingsee_app_sysadmin_3617045505
+Theft Alarm & Tracker
+3_2311
+Thingsee purpose
+Graph: Theft Alarm & Tracker <Thingsee purpose> 3_2311
+	Name: Theft Alarm & Tracker
+	Description: As provided by Thingsee sample app
+Object: Impact >1.2 (g) <Acceleration> 3_2342
+	Direction: Any
+	Trigger if over (g): 1.2
+	Trigger if under (g): 0
+Object: SMS0(Thingsee battery level is below 10%) <Action> 3_2405
+	Send saved logs to cloud: F
+	Send event to: none
+	Send event to cloud URL: 
+	Send SMS message: 0(Thingsee battery level is below 10%)
+	Object: 0(Thingsee battery level is below 10%) <Send SMS message> 3_2399
+		To (phone number): 0
+		Message: Thingsee battery level is below 10%
+Object: SMS0(Your Thingsee has been stolen!) <Action> 3_2437
+	Send saved logs to cloud: F
+	Send event to: none
+	Send event to cloud URL: 
+	Send SMS message: 0(Your Thingsee has been stolen!)
+	Object: 0(Your Thingsee has been stolen!) <Send SMS message> 3_2431
+		To (phone number): 0
+		Message: Your Thingsee has been stolen!
+Object: push notification <Action> 3_2558
+	Send saved logs to cloud: F
+	Send event to: push notification
+	Send event to cloud URL: 
+	Send SMS message: 
+Object: SMS0(Never mind.) <Action> 3_2590
+	Send saved logs to cloud: F
+	Send event to: none
+	Send event to cloud URL: 
+	Send SMS message: 0(Never mind.)
+	Object: 0(Never mind.) <Send SMS message> 3_2584
+		To (phone number): 0
+		Message: Never mind.
+Object: <10%  <Battery> 3_2370
+	Trigger if battery over (%): 
+	Trigger if battery under (%): 10
+Object: 65.0136286760383,
+25.512067079544067,
+65.01234612064785,
+25.511326789855957,
+65.01216483576492,
+25.513322353363037,
+65.01334316550455,
+25.51403045654297 outside geofence <Geofence> 3_5379
+	Geofence value: 65.0136286760383,
+25.512067079544067,
+65.01234612064785,
+25.511326789855957,
+65.01216483576492,
+25.513322353363037,
+65.01334316550455,
+25.51403045654297
+	Trigger if: outside geofence
+Object: 65.0136286760383,
+25.512067079544067,
+65.01234612064785,
+25.511326789855957,
+65.01216483576492,
+25.513322353363037,
+65.01334316550455,
+25.51403045654297 inside geofence <Geofence> 3_5386
+	Geofence value: 65.0136286760383,
+25.512067079544067,
+65.01234612064785,
+25.511326789855957,
+65.01216483576492,
+25.513322353363037,
+65.01334316550455,
+25.51403045654297
+	Trigger if: inside geofence
+Object: Loc <Location> 3_2528
+	Trigger: when sense has any value
+	Trigger if over (meters): 
+	Trigger if under (meters): 
+Object: Sleeping <State> 3_2321
+	Name: Sleeping
+	Start state: T
+	Always active: F
+	Description: 
+Object: Area check <State> 3_2328
+	Name: Area check
+	Start state: F
+	Always active: F
+	Description: 
+Object: Tracking <State> 3_2335
+	Name: Tracking
+	Start state: F
+	Always active: F
+	Description: 
+Object: {
+  "pId": "1",
+  "apiVersion": "00.18",
+  "initPuId": 1,
+  "purposes": [
+    {
+      "puId": 1,
+      "name": "Theft Alarm & Tracker",
+      "initStId": 0,
+      "states": [
+        {
+          "stId": 0,
+          "name": "Sleeping",
+          "events": [
+            {
+              "evId": 0,
+              "name": "1 Bump detection",
+              "actions": {
+                "engine": {
+                  "gotoStId": 1
+                },
+                "cloud": {
+                  "sendEvent": false,
+                  "sendLog": false,
+                  "sendPush": false
+                }
+              },
+              "causes": [
+                {
+                  "sId": "0x00050400",
+                  "threshold": {
+                    "count": 1
+                  },
+                  "measurement": {
+                    "log": false
+                  },
+                  "thresholds": {
+                    "isGt": 1.2
+                  }
+                }
+              ]
+            },
+            {
+              "evId": 1,
+              "name": "2 Battery warning",
+              "actions": {
+                "cloud": {
+                  "sendEvent": false,
+                  "sendPush": false
+                },
+                "sms": {
+                  "phoneNumber": [
+                    "0"
+                  ],
+                  "text": "Thingsee battery level is below 10%"
+                }
+              },
+              "causes": [
+                {
+                  "sId": "0x00030200",
+                  "threshold": {
+                    "count": 1
+                  },
+                  "measurement": {
+                    "log": false,
+                    "interval": 43200000
+                  },
+                  "thresholds": {
+                    "isLt": 10
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stId": 1,
+          "name": "Area check",
+          "events": [
+            {
+              "evId": 0,
+              "name": "1 Out-of-area",
+              "actions": {
+                "engine": {
+                  "gotoStId": 2
+                },
+                "cloud": {
+                  "sendEvent": false,
+                  "sendPush": false
+                },
+                "sms": {
+                  "phoneNumber": [
+                    "0"
+                  ],
+                  "text": "Your Thingsee has been stolen!"
+                }
+              },
+              "causes": [
+                {
+                  "sId": "0x00010500",
+                  "threshold": {
+                    "count": 1,
+                    "negate": true
+                  },
+                  "measurement": {
+                    "log": false,
+                    "interval": 1000
+                  },
+                  "thresholds": {
+                    "isInsideGeo": [
+                      65.0136286760383,
+                      25.512067079544067,
+                      65.01234612064785,
+                      25.511326789855957,
+                      65.01216483576492,
+                      25.513322353363037,
+                      65.01334316550455,
+                      25.51403045654297
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "evId": 1,
+              "name": "2 In area",
+              "actions": {
+                "engine": {
+                  "gotoStId": 0
+                },
+                "cloud": {
+                  "sendEvent": false,
+                  "sendPush": false
+                }
+              },
+              "causes": [
+                {
+                  "sId": "0x00010500",
+                  "threshold": {
+                    "count": 1,
+                    "negate": false
+                  },
+                  "measurement": {
+                    "log": false,
+                    "interval": 1000
+                  },
+                  "thresholds": {
+                    "isInsideGeo": [
+                      65.0136286760383,
+                      25.512067079544067,
+                      65.01234612064785,
+                      25.511326789855957,
+                      65.01216483576492,
+                      25.513322353363037,
+                      65.01334316550455,
+                      25.51403045654297
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stId": 2,
+          "name": "Tracking",
+          "events": [
+            {
+              "evId": 0,
+              "name": "1 Report location",
+              "actions": {
+                "cloud": {
+                  "sendEvent": true,
+                  "sendPush": true
+                }
+              },
+              "causes": [
+                {
+                  "sId": "0x00010100",
+                  "threshold": {
+                    "count": 1
+                  },
+                  "measurement": {
+                    "log": false,
+                    "interval": 900000
+                  },
+                  "thresholds": {
+                    "isAny": true
+                  }
+                },
+                {
+                  "sId": "0x00010200",
+                  "threshold": {
+                    "count": 1
+                  },
+                  "measurement": {
+                    "log": false,
+                    "interval": 900000
+                  },
+                  "thresholds": {
+                    "isAny": true
+                  }
+                }
+              ]
+            },
+            {
+              "evId": 1,
+              "name": "2 In area",
+              "actions": {
+                "engine": {
+                  "gotoStId": 0
+                },
+                "cloud": {
+                  "sendEvent": false,
+                  "sendPush": false
+                },
+                "sms": {
+                  "phoneNumber": [
+                    "0"
+                  ],
+                  "text": "Never mind."
+                }
+              },
+              "causes": [
+                {
+                  "sId": "0x00010500",
+                  "threshold": {
+                    "count": 1,
+                    "negate": false
+                  },
+                  "measurement": {
+                    "log": false,
+                    "interval": 900000
+                  },
+                  "thresholds": {
+                    "isInsideGeo": [
+                      65.0136286760383,
+                      25.512067079544067,
+                      65.01234612064785,
+                      25.511326789855957,
+                      65.01216483576492,
+                      25.513322353363037,
+                      65.01334316550455,
+                      25.51403045654297
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+} <TestElement> 3_5309
+	Description: {
+  "pId": "1",
+  "apiVersion": "00.18",
+  "initPuId": 1,
+  "purposes": [
+    {
+      "puId": 1,
+      "name": "Theft Alarm & Tracker",
+      "initStId": 0,
+      "states": [
+        {
+          "stId": 0,
+          "name": "Sleeping",
+          "events": [
+            {
+              "evId": 0,
+              "name": "1 Bump detection",
+              "actions": {
+                "engine": {
+                  "gotoStId": 1
+                },
+                "cloud": {
+                  "sendEvent": false,
+                  "sendLog": false,
+                  "sendPush": false
+                }
+              },
+              "causes": [
+                {
+                  "sId": "0x00050400",
+                  "threshold": {
+                    "count": 1
+                  },
+                  "measurement": {
+                    "log": false
+                  },
+                  "thresholds": {
+                    "isGt": 1.2
+                  }
+                }
+              ]
+            },
+            {
+              "evId": 1,
+              "name": "2 Battery warning",
+              "actions": {
+                "cloud": {
+                  "sendEvent": false,
+                  "sendPush": false
+                },
+                "sms": {
+                  "phoneNumber": [
+                    "0"
+                  ],
+                  "text": "Thingsee battery level is below 10%"
+                }
+              },
+              "causes": [
+                {
+                  "sId": "0x00030200",
+                  "threshold": {
+                    "count": 1
+                  },
+                  "measurement": {
+                    "log": false,
+                    "interval": 43200000
+                  },
+                  "thresholds": {
+                    "isLt": 10
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stId": 1,
+          "name": "Area check",
+          "events": [
+            {
+              "evId": 0,
+              "name": "1 Out-of-area",
+              "actions": {
+                "engine": {
+                  "gotoStId": 2
+                },
+                "cloud": {
+                  "sendEvent": false,
+                  "sendPush": false
+                },
+                "sms": {
+                  "phoneNumber": [
+                    "0"
+                  ],
+                  "text": "Your Thingsee has been stolen!"
+                }
+              },
+              "causes": [
+                {
+                  "sId": "0x00010500",
+                  "threshold": {
+                    "count": 1,
+                    "negate": true
+                  },
+                  "measurement": {
+                    "log": false,
+                    "interval": 1000
+                  },
+                  "thresholds": {
+                    "isInsideGeo": [
+                      65.0136286760383,
+                      25.512067079544067,
+                      65.01234612064785,
+                      25.511326789855957,
+                      65.01216483576492,
+                      25.513322353363037,
+                      65.01334316550455,
+                      25.51403045654297
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "evId": 1,
+              "name": "2 In area",
+              "actions": {
+                "engine": {
+                  "gotoStId": 0
+                },
+                "cloud": {
+                  "sendEvent": false,
+                  "sendPush": false
+                }
+              },
+              "causes": [
+                {
+                  "sId": "0x00010500",
+                  "threshold": {
+                    "count": 1,
+                    "negate": false
+                  },
+                  "measurement": {
+                    "log": false,
+                    "interval": 1000
+                  },
+                  "thresholds": {
+                    "isInsideGeo": [
+                      65.0136286760383,
+                      25.512067079544067,
+                      65.01234612064785,
+                      25.511326789855957,
+                      65.01216483576492,
+                      25.513322353363037,
+                      65.01334316550455,
+                      25.51403045654297
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stId": 2,
+          "name": "Tracking",
+          "events": [
+            {
+              "evId": 0,
+              "name": "1 Report location",
+              "actions": {
+                "cloud": {
+                  "sendEvent": true,
+                  "sendPush": true
+                }
+              },
+              "causes": [
+                {
+                  "sId": "0x00010100",
+                  "threshold": {
+                    "count": 1
+                  },
+                  "measurement": {
+                    "log": false,
+                    "interval": 900000
+                  },
+                  "thresholds": {
+                    "isAny": true
+                  }
+                },
+                {
+                  "sId": "0x00010200",
+                  "threshold": {
+                    "count": 1
+                  },
+                  "measurement": {
+                    "log": false,
+                    "interval": 900000
+                  },
+                  "thresholds": {
+                    "isAny": true
+                  }
+                }
+              ]
+            },
+            {
+              "evId": 1,
+              "name": "2 In area",
+              "actions": {
+                "engine": {
+                  "gotoStId": 0
+                },
+                "cloud": {
+                  "sendEvent": false,
+                  "sendPush": false
+                },
+                "sms": {
+                  "phoneNumber": [
+                    "0"
+                  ],
+                  "text": "Never mind."
+                }
+              },
+              "causes": [
+                {
+                  "sId": "0x00010500",
+                  "threshold": {
+                    "count": 1,
+                    "negate": false
+                  },
+                  "measurement": {
+                    "log": false,
+                    "interval": 900000
+                  },
+                  "thresholds": {
+                    "isInsideGeo": [
+                      65.0136286760383,
+                      25.512067079544067,
+                      65.01234612064785,
+                      25.511326789855957,
+                      65.01216483576492,
+                      25.513322353363037,
+                      65.01334316550455,
+                      25.51403045654297
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+Relationship: 1 Bump detection <Transition> 3_2351
+	Name: 1 Bump detection
+  Role: From <From>  Object: <State> 3_2321
+  Role: To <To>  Object: <State> 3_2328
+  Role: F <Trigger>  Object: <Acceleration> 3_2342
+	Log values to device: F
+Relationship: 1 Out-of-area <Transition> 3_2420
+	Name: 1 Out-of-area
+  Role: Action <Action>  Object: <Action> 3_2437
+  Role: From <From>  Object: <State> 3_2328
+  Role: F <PollTrigger>  Object: <Geofence> 3_5379
+	Log values to device: F
+	Poll values after every: 1
+	Poll unit: seconds
+  Role: To <To>  Object: <State> 3_2335
+Relationship: 2 In area <Transition> 3_2480
+	Name: 2 In area
+  Role: From <From>  Object: <State> 3_2328
+  Role: F <PollTrigger>  Object: <Geofence> 3_5386
+	Log values to device: F
+	Poll values after every: 1
+	Poll unit: seconds
+  Role: To <To>  Object: <State> 3_2321
+Relationship: 1 Report location <Transition> 3_2539
+	Name: 1 Report location
+  Role: Action <Action>  Object: <Action> 3_2558
+  Role: From <From>  Object: <State> 3_2335
+  Role: F <PollTrigger>  Object: <Location> 3_2528
+	Log values to device: F
+	Poll values after every: 15
+	Poll unit: minutes
+  Role: To <To>  Object: <State> 3_2335
+Relationship: 2 In area <Transition> 3_2573
+	Name: 2 In area
+  Role: Action <Action>  Object: <Action> 3_2590
+  Role: From <From>  Object: <State> 3_2335
+  Role: F <PollTrigger>  Object: <Geofence> 3_5386
+	Log values to device: F
+	Poll values after every: 15
+	Poll unit: minutes
+  Role: To <To>  Object: <State> 3_2321
+Relationship: 2 Battery warning <Transition> 3_6453
+	Name: 2 Battery warning
+  Role: Action <Action>  Object: <Action> 3_2405
+  Role: From <From>  Object: <State> 3_2321
+  Role: F <PollTrigger>  Object: <Battery> 3_2370
+	Log values to device: F
+	Poll values after every: 12
+	Poll unit: hours
+  Role: To <To>  Object: <State> 3_2321

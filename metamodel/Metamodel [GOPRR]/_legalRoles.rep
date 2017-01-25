@@ -1,0 +1,25 @@
+_legalRoles()
+'<report>_legalRoles()
+variable ''roleTypes'' write
+'''
+' '
+@elems = '' ''
+foreach >Binding [GOPRR]; {
+	do ~() { 
+		if not @elems =~ id%var%wildsp; then
+			local 'elems' append id%var ' ' close
+			id%var ' '
+		endif
+	}
+}
+'''
+close
+foreach >() {
+	do ~() {
+		if not $roleTypes =~ type%var%wildsp then
+			''Error: '' type '' is not legal role type in this graph'' newline
+		endif
+	}
+}
+</report>
+'

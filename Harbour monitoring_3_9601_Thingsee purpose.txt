@@ -1,0 +1,296 @@
+Graph_Thingsee_app_sysadmin_3617045505
+Harbour monitoring
+3_9601
+Thingsee purpose
+Graph: Harbour monitoring <Thingsee purpose> 3_9601
+	Name: Harbour monitoring
+	Description: Checks the status of the boat in harbour including wawes
+Object: Vertical >1.05 (g) <Acceleration> 3_8852
+	Direction: Vertical
+	Trigger if over (g): 1.05
+	Trigger if under (g): 0
+Object: Vertical >1.05 (g) <Acceleration> 3_8872
+	Direction: Vertical
+	Trigger if over (g): 1.05
+	Trigger if under (g): 0
+Object: Impact >1.05 (g) <Acceleration> 3_9646
+	Direction: Any
+	Trigger if over (g): 1.05
+	Trigger if under (g): 0
+Object: Impact >1.5 (g) <Acceleration> 3_9754
+	Direction: Any
+	Trigger if over (g): 1.5
+	Trigger if under (g): 0
+Object: SMS0(Boat is back in harbour) <Action> 3_8288
+	Send saved logs to cloud: F
+	Send event to: none
+	Send event to cloud URL: 
+	Send SMS message: 0(Boat is back in harbour)
+	Object: 0(Boat is back in harbour) <Send SMS message> 3_8238
+		To (phone number): 0
+		Message: Boat is back in harbour
+Object: SMS0(Boat is not in harbour!) <Action> 3_8452
+	Send saved logs to cloud: F
+	Send event to: none
+	Send event to cloud URL: 
+	Send SMS message: 0(Boat is not in harbour!)
+	Object: 0(Boat is not in harbour!) <Send SMS message> 3_8248
+		To (phone number): 0
+		Message: Boat is not in harbour!
+Object: Save logs, push notification <Action> 3_8496
+	Send saved logs to cloud: T
+	Send event to: push notification
+	Send event to cloud URL: 
+	Send SMS message: 
+Object: Save logs, cloud <Action> 3_9136
+	Send saved logs to cloud: T
+	Send event to: cloud
+	Send event to cloud URL: 
+	Send SMS message: 
+Object: SMS0(Update salt for dryer) <Action> 3_9570
+	Send saved logs to cloud: F
+	Send event to: none
+	Send event to cloud URL: 
+	Send SMS message: 0(Update salt for dryer)
+	Object: 0(Update salt for dryer) <Send SMS message> 3_9588
+		To (phone number): 0
+		Message: Update salt for dryer
+Object: SMS0(Warning: water freezing.) <Action> 3_9698
+	Send saved logs to cloud: F
+	Send event to: none
+	Send event to cloud URL: 
+	Send SMS message: 0(Warning: water freezing.)
+	Object: 0(Warning: water freezing.) <Send SMS message> 3_9716
+		To (phone number): 0
+		Message: Warning: water freezing.
+Object: SMS0(Battery level is below 10%) <Action> 3_9726
+	Send saved logs to cloud: F
+	Send event to: none
+	Send event to cloud URL: 
+	Send SMS message: 0(Battery level is below 10%)
+	Object: 0(Battery level is below 10%) <Send SMS message> 3_9744
+		To (phone number): 0
+		Message: Battery level is below 10%
+Object: <10%  <Battery> 3_9786
+	Trigger if battery over (%): 
+	Trigger if battery under (%): 10
+Object: To track traffic and adjust to waves <Comment> 3_9296
+	Description: To track traffic and adjust to waves
+Object: Monitor boat in harbour. <Display> 3_9622
+	Text shown: Monitor boat in harbour.
+Object: 62.21563545779646,
+25.759077072143555,
+62.21593552804997,
+25.760793685913086,
+62.21525536452692,
+25.76242446899414,
+62.21421508479132,
+25.76096534729004,
+62.21439513577228,
+25.758261680603027,
+62.214935282272315,
+25.75817584991455 inside geofence <Geofence> 3_8320
+	Geofence value: 62.21563545779646,
+25.759077072143555,
+62.21593552804997,
+25.760793685913086,
+62.21525536452692,
+25.76242446899414,
+62.21421508479132,
+25.76096534729004,
+62.21439513577228,
+25.758261680603027,
+62.214935282272315,
+25.75817584991455
+	Trigger if: inside geofence
+Object: 62.21563545779646,
+25.759077072143555,
+62.21593552804997,
+25.760793685913086,
+62.21525536452692,
+25.76242446899414,
+62.21421508479132,
+25.76096534729004,
+62.21439513577228,
+25.758261680603027,
+62.214935282272315,
+25.75817584991455 outside geofence <Geofence> 3_8426
+	Geofence value: 62.21563545779646,
+25.759077072143555,
+62.21593552804997,
+25.760793685913086,
+62.21525536452692,
+25.76242446899414,
+62.21421508479132,
+25.76096534729004,
+62.21439513577228,
+25.758261680603027,
+62.214935282272315,
+25.75817584991455
+	Trigger if: outside geofence
+Object: >55 %rh <Humidity> 3_9558
+	Trigger if over (%rh): 55
+	Trigger if under (%rh): 
+Object: Loc <Location> 3_8514
+	Trigger: when sense has any value
+	Trigger if over (meters): 
+	Trigger if under (meters): 
+Object: 2 lux <Luminance> 3_9806
+	Trigger if over (lux): 
+	Trigger if under (lux): 2
+Object: InitializeSailing <Other Purpose> 3_9816
+	State in other purpose: InitializeSailing
+	Object: InitializeSailing <State> 3_10587
+		Name: InitializeSailing
+		Start state: T
+		Always active: F
+		Description: 
+Object: Tracking area <State> 3_8268
+	Name: Tracking area
+	Start state: F
+	Always active: F
+	Description: 
+Object: Area check <State> 3_8364
+	Name: Area check
+	Start state: F
+	Always active: F
+	Description: 
+Object: Vertical movement <State> 3_9260
+	Name: Vertical movement
+	Start state: F
+	Always active: F
+	Description: 
+Object: Monitoring <State> 3_9526
+	Name: Monitoring
+	Start state: F
+	Always active: F
+	Description: 
+Object: InHarbour <State> 3_9906
+	Name: InHarbour
+	Start state: T
+	Always active: F
+	Description: 
+Object: Bump detection <State> 3_10442
+	Name: Bump detection
+	Start state: F
+	Always active: F
+	Description: 
+Object: < 2 C <Temperature> 3_9796
+	Trigger if over (celcius): 
+	Trigger if under (celcius): 2
+Object: 5 sec <Timer> 3_9287
+	Trigger timer after (sec): 5
+Object: 3 sec <Timer> 3_9301
+	Trigger timer after (sec): 3
+Object: 10 sec <Timer> 3_10746
+	Trigger timer after (sec): 10
+Relationship:  <Transition> 3_9520
+	Name: 
+  Role: Action <Action>  Object: <Action> 3_9570
+  Role: From <From>  Object: <State> 3_9526
+  Role: F <PollTrigger>  Object: <Humidity> 3_9558
+	Log values to device: F
+	Poll values after every: 1
+	Poll unit: hours
+  Role: To <To>  Object: <State> 3_9526
+Relationship:  <Transition> 3_9926
+	Name: 
+  Role: From <From>  Object: <State> 3_9526
+  Role: F <PollTrigger>  Object: <Luminance> 3_9806
+	Log values to device: F
+	Poll values after every: 5
+	Poll unit: seconds
+  Role: To <To>  Object: <Other Purpose> 3_9816
+  Role: F <Trigger>  Object: <Acceleration> 3_9754
+	Log values to device: F
+Relationship:  <Transition> 3_9958
+	Name: 
+  Role: Action <Action>  Object: <Display> 3_9622
+  Role: From <From>  Object: <State> 3_9906
+  Role: To <To>  Object: <State> 3_9526
+Relationship: Battery warning <Transition> 3_9972
+	Name: Battery warning
+  Role: Action <Action>  Object: <Action> 3_9726
+  Role: From <From>  Object: <State> 3_9526
+  Role: F <PollTrigger>  Object: <Battery> 3_9786
+	Log values to device: F
+	Poll values after every: 12
+	Poll unit: hours
+  Role: To <To>  Object: <State> 3_9526
+Relationship:  <Transition> 3_10056
+	Name: 
+  Role: From <From>  Object: <State> 3_9526
+  Role: To <To>  Object: <State> 3_10442
+  Role: F <Trigger>  Object: <Acceleration> 3_9646
+	Log values to device: F
+Relationship:  <Transition> 3_10126
+	Name: 
+  Role: Action <Action>  Object: <Action> 3_9698
+  Role: From <From>  Object: <State> 3_9526
+  Role: F <PollTrigger>  Object: <Temperature> 3_9796
+	Log values to device: F
+	Poll values after every: 15
+	Poll unit: minutes
+  Role: To <To>  Object: <State> 3_9526
+Relationship:  <Transition> 3_10294
+	Name: 
+  Role: From <From>  Object: <State> 3_10442
+  Role: To <To>  Object: <State> 3_8364
+  Role: F <Trigger>  Object: <Timer> 3_9301
+	Log values to device: F
+Relationship: At sea <Transition> 3_10302
+	Name: At sea
+  Role: Action <Action>  Object: <Action> 3_8452
+  Role: From <From>  Object: <State> 3_8364
+  Role: F <PollTrigger>  Object: <Geofence> 3_8426
+	Log values to device: F
+	Poll values after every: 1
+	Poll unit: seconds
+  Role: To <To>  Object: <State> 3_8268
+Relationship:  <Transition> 3_10314
+	Name: 
+  Role: From <From>  Object: <State> 3_8364
+  Role: F <PollTrigger>  Object: <Geofence> 3_8320
+	Log values to device: F
+	Poll values after every: 1
+	Poll unit: seconds
+  Role: To <To>  Object: <State> 3_9526
+Relationship:  <Transition> 3_10326
+	Name: 
+  Role: From <From>  Object: <State> 3_10442
+  Role: To <To>  Object: <State> 3_9260
+  Role: F <Trigger>  Object: <Acceleration> 3_8852
+	Log values to device: F
+Relationship: Waves? <Transition> 3_10396
+	Name: Waves?
+  Role: Action <Action>  Object: <Action> 3_9136
+  Role: From <From>  Object: <State> 3_9260
+  Role: To <To>  Object: <State> 3_9526
+  Role: F <Trigger>  Object: <Acceleration> 3_8872
+	Log values to device: F
+  Role: F <Trigger>  Object: <Timer> 3_9287
+	Log values to device: F
+Relationship:  <Transition> 3_10424
+	Name: 
+  Role: Action <Action>  Object: <Action> 3_8496
+  Role: From <From>  Object: <State> 3_8268
+  Role: F <PollTrigger>  Object: <Location> 3_8514
+	Log values to device: F
+	Poll values after every: 1
+	Poll unit: minutes
+  Role: To <To>  Object: <State> 3_8268
+Relationship:  <Transition> 3_10430
+	Name: 
+  Role: Action <Action>  Object: <Action> 3_8288
+  Role: From <From>  Object: <State> 3_8268
+  Role: F <PollTrigger>  Object: <Geofence> 3_8320
+	Log values to device: F
+	Poll values after every: 15
+	Poll unit: minutes
+  Role: To <To>  Object: <State> 3_9526
+Relationship:  <Transition> 3_10735
+	Name: 
+  Role: From <From>  Object: <State> 3_9260
+  Role: To <To>  Object: <State> 3_9526
+  Role: F <Trigger>  Object: <Timer> 3_10746
+	Log values to device: F

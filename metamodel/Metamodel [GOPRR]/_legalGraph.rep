@@ -1,0 +1,13 @@
+_legalGraph()
+'<report>_legalGraph()
+variable ''graphType'' write
+'''
+id%var
+'''
+/* _legalProp(metatype, id%var) */
+close
+if not type%var = $graphType; then
+	''Error: '' type '' is not legal graph type'' newline
+endif
+</report>
+'

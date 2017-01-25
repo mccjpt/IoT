@@ -1,0 +1,226 @@
+Graph_Thingsee_app_sysadmin_3617045505
+Speeding Alert
+3_3734
+Thingsee purpose
+Graph: Speeding Alert <Thingsee purpose> 3_3734
+	Name: Speeding Alert
+	Description: 
+Object: cloud, SMS0(The kid speeding!) <Action> 3_3790
+	Send saved logs to cloud: F
+	Send event to: cloud
+	Send event to cloud URL: 
+	Send SMS message: 0(The kid speeding!)
+	Object: 0(The kid speeding!) <Send SMS message> 3_3784
+		To (phone number): 0
+		Message: The kid speeding!
+Object: >120  km/h <Speed> 3_3769
+	Trigger if over (km/h): 120
+	Trigger if under (km/h): 
+Object: <117 km/h <Speed> 3_3850
+	Trigger if over (km/h): 
+	Trigger if under (km/h): 117
+Object: Below limit <State> 3_3744
+	Name: Below limit
+	Start state: T
+	Always active: F
+	Description: 
+Object: Above limit <State> 3_3751
+	Name: Above limit
+	Start state: F
+	Always active: F
+	Description: 
+Object: {
+  "pId": "1",
+  "apiVersion": "00.18",
+  "initPuId": 1,
+  "purposes": [
+    {
+      "puId": 1,
+      "name": "Speeding Alert",
+      "initStId": 0,
+      "states": [
+        {
+          "stId": 0,
+          "name": "Below limit",
+          "events": [
+            {
+              "evId": 0,
+              "name": "Speed check1",
+              "actions": {
+                "engine": {
+                  "gotoStId": 1
+                },
+                "cloud": {
+                  "sendEvent": true,
+                  "sendLog": false,
+                  "sendPush": false
+                },
+                "sms": {
+                  "phoneNumber": [
+                    "0"
+                  ],
+                  "text": "The kid speeding!"
+                }
+              },
+              "causes": [
+                {
+                  "sId": "0x00020100",
+                  "threshold": {
+                    "count": 1
+                  },
+                  "measurement": {
+                    "log": false,
+                    "interval": 15000
+                  },
+                  "thresholds": {
+                    "isGt": 33.33333
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stId": 1,
+          "name": "Above limit",
+          "events": [
+            {
+              "evId": 0,
+              "name": "Speed check2",
+              "actions": {
+                "engine": {
+                  "gotoStId": 0
+                },
+                "cloud": {
+                  "sendEvent": false,
+                  "sendPush": false
+                }
+              },
+              "causes": [
+                {
+                  "sId": "0x00020100",
+                  "threshold": {
+                    "count": 1
+                  },
+                  "measurement": {
+                    "log": false,
+                    "interval": 10000
+                  },
+                  "thresholds": {
+                    "isLt": 32.5
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+} <TestElement> 3_3964
+	Description: {
+  "pId": "1",
+  "apiVersion": "00.18",
+  "initPuId": 1,
+  "purposes": [
+    {
+      "puId": 1,
+      "name": "Speeding Alert",
+      "initStId": 0,
+      "states": [
+        {
+          "stId": 0,
+          "name": "Below limit",
+          "events": [
+            {
+              "evId": 0,
+              "name": "Speed check1",
+              "actions": {
+                "engine": {
+                  "gotoStId": 1
+                },
+                "cloud": {
+                  "sendEvent": true,
+                  "sendLog": false,
+                  "sendPush": false
+                },
+                "sms": {
+                  "phoneNumber": [
+                    "0"
+                  ],
+                  "text": "The kid speeding!"
+                }
+              },
+              "causes": [
+                {
+                  "sId": "0x00020100",
+                  "threshold": {
+                    "count": 1
+                  },
+                  "measurement": {
+                    "log": false,
+                    "interval": 15000
+                  },
+                  "thresholds": {
+                    "isGt": 33.33333
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stId": 1,
+          "name": "Above limit",
+          "events": [
+            {
+              "evId": 0,
+              "name": "Speed check2",
+              "actions": {
+                "engine": {
+                  "gotoStId": 0
+                },
+                "cloud": {
+                  "sendEvent": false,
+                  "sendPush": false
+                }
+              },
+              "causes": [
+                {
+                  "sId": "0x00020100",
+                  "threshold": {
+                    "count": 1
+                  },
+                  "measurement": {
+                    "log": false,
+                    "interval": 10000
+                  },
+                  "thresholds": {
+                    "isLt": 32.5
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+Relationship: Speed check1 <Transition> 3_3758
+	Name: Speed check1
+  Role: Action <Action>  Object: <Action> 3_3790
+  Role: From <From>  Object: <State> 3_3744
+  Role: F <PollTrigger>  Object: <Speed> 3_3769
+	Log values to device: F
+	Poll values after every: 15
+	Poll unit: seconds
+  Role: To <To>  Object: <State> 3_3751
+Relationship: Speed check2 <Transition> 3_3805
+	Name: Speed check2
+  Role: From <From>  Object: <State> 3_3751
+  Role: F <PollTrigger>  Object: <Speed> 3_3850
+	Log values to device: F
+	Poll values after every: 10
+	Poll unit: seconds
+  Role: To <To>  Object: <State> 3_3744

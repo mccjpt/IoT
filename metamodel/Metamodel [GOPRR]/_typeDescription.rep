@@ -1,0 +1,7 @@
+Report '_typeDescription'
+:Description%xml; 
+'" id="' subreport '_type_name_oid' run
+'" typeName="' id%xml '">' newline
+subreport '_supertype' run
+subreport '_slots' run
+endreport

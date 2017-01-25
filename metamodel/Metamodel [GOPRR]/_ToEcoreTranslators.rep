@@ -1,0 +1,24 @@
+_ToEcoreTranslators()
+_translators()
+
+to '%ecore
+$Text $Char
+$Number $Int
+'
+endto
+
+
+/* 
+String OK
+Text
+Number
+Boolean OK
+Creation Timestamp
+UUID Base64
+Object
+Collection
+Editable List
+Overridable List
+Fixed List
+Radio Button Set
+External Element */

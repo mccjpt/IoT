@@ -1,0 +1,10 @@
+_EcoreClassifiers()
+foreach .Object [GOPRR] {	
+'	<eClassifiers xsi:type="ecore:EClass" name="':Object name;'"' 
+	_EcoreSuperType()
+	'>' newline
+	_EcoreAttribute()
+	_EcoreReference()
+	'	</eClassifiers>
+'
+}

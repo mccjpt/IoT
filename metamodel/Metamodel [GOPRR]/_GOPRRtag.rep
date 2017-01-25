@@ -1,0 +1,11 @@
+Report '_GOPRRtag'
+/* makes type names legal for XML */
+to
+'%tag
+A-Z a-z
+$\ [goprr] $'
+endto
+
+subreport '_translators' run
+
+endreport

@@ -1,0 +1,13 @@
+Graph_Thingsee_applications_user_3619123129
+Boat AllSeason Monitor
+3_10494
+Thingsee Profile
+Graph: Boat AllSeason Monitor <Thingsee Profile> 3_10494
+	Name: Boat AllSeason Monitor
+	Description: 
+Object: Sailing <Purpose> 3_10504
+	Decomposed to: Sailing <Thingsee purpose>
+Object: Harbour monitoring <Purpose> 3_10507
+	Decomposed to: Harbour monitoring <Thingsee purpose>
+Object: Winter docking <Purpose> 3_10756
+	Decomposed to: Winter docking <Thingsee purpose>

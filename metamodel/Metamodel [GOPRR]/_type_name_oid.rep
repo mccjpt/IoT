@@ -1,0 +1,10 @@
+Report '_type_name_oid'
+/* replaces special characters with underscore */
+to
+'%var
+a-zA-Z0-9 *
+* _
+$_GOPRR_ $'
+translate type '_' id endto
+'_' oid
+endreport

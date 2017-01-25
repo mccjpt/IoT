@@ -1,0 +1,6 @@
+_EcoreReference()
+do ~First role [GOPRR]>() {
+	do ~Last role [GOPRR].Object [GOPRR] {
+		'		<eStructuralFeatures xsi:type="ecore:EReference" name="'id;1'" eType="#//'id'"/>' newline
+	}
+}

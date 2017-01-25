@@ -1,0 +1,14 @@
+Report '_uniqueness constraint'
+do :Properties {
+	if :Uniqueness = 'per graph' then
+		'<uniqueness>' newline
+		'<object href="#' 
+		type;1;%var; '_' id;1;%var; '_' oid;1;
+		'"></object>' newline
+		'<propertyName>' 
+		if :Local name; then :Local name%xml; else :Property name%xml; endif;
+		'</propertyName>' newline
+		'</uniqueness>' newline
+	endif
+}
+endreport

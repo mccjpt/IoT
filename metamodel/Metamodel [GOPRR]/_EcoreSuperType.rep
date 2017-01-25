@@ -1,0 +1,4 @@
+_EcoreSuperType()
+do ~Subtype [GOPRR]~Supertype [GOPRR].Object [GOPRR] {
+	'eSuperTypes="#//':Object name;'"'
+}
