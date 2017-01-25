@@ -101,7 +101,7 @@ Relationship:  <Transition> 3_8754
   Role: From <From>  Object: <State> 3_8332
   Role: F <PollTrigger>  Object: <Humidity> 3_8625
 	Log values to device: F
-	Poll values after every: 1
+	Poll values after every: 2
 	Poll unit: hours
   Role: To <To>  Object: <State> 3_8332
 Relationship:  <Transition> 3_8920
