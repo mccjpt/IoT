@@ -29,8 +29,6 @@ Object: SMS0(Warning: water freezing.) <Action> 3_8736
 	Object: 0(Warning: water freezing.) <Send SMS message> 3_8730
 		To (phone number): 0
 		Message: Warning: water freezing.
-Object: Start monitoring <Display> 3_12459
-	Text shown: Start monitoring
 Object: >55 %rh <Humidity> 3_8625
 	Trigger if over (%rh): 55
 	Trigger if under (%rh): 
@@ -66,7 +64,6 @@ Object: < 2 C <Temperature> 3_8632
 	Trigger if under (celcius): 2
 Relationship:  <Transition> 3_8179
 	Name: 
-  Role: Action <Action>  Object: <Display> 3_12459
   Role: From <From>  Object: <State> 3_8053
   Role: To <To>  Object: <State> 3_8332
 Relationship:  <Transition> 3_8683
