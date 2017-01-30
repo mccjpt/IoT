@@ -9,10 +9,6 @@ Object: Impact >1.5 (g) <Acceleration> 3_8899
 	Direction: Any
 	Trigger if over (g): 1.5
 	Trigger if under (g): 0
-Object: Impact >1.05 (g) <Acceleration> 3_8943
-	Direction: Any
-	Trigger if over (g): 1.05
-	Trigger if under (g): 0
 Object: SMS0(Update salt for dryer) <Action> 3_8719
 	Send saved logs to cloud: F
 	Send event to: none
@@ -29,6 +25,8 @@ Object: SMS0(Warning: water freezing.) <Action> 3_8736
 	Object: 0(Warning: water freezing.) <Send SMS message> 3_8730
 		To (phone number): 0
 		Message: Warning: water freezing.
+Object: Start monitoring <Display> 3_12466
+	Text shown: Start monitoring
 Object: >55 %rh <Humidity> 3_8625
 	Trigger if over (%rh): 55
 	Trigger if under (%rh): 
@@ -64,6 +62,7 @@ Object: < 2 C <Temperature> 3_8632
 	Trigger if under (celcius): 2
 Relationship:  <Transition> 3_8179
 	Name: 
+  Role: Action <Action>  Object: <Display> 3_12466
   Role: From <From>  Object: <State> 3_8053
   Role: To <To>  Object: <State> 3_8332
 Relationship:  <Transition> 3_8683
@@ -81,7 +80,7 @@ Relationship:  <Transition> 3_8754
   Role: From <From>  Object: <State> 3_8332
   Role: F <PollTrigger>  Object: <Humidity> 3_8625
 	Log values to device: F
-	Poll values after every: 1
+	Poll values after every: 2
 	Poll unit: hours
   Role: To <To>  Object: <State> 3_8332
 Relationship:  <Transition> 3_8920
@@ -98,5 +97,3 @@ Relationship:  <Transition> 3_9245
 	Name: 
   Role: From <From>  Object: <State> 3_8332
   Role: To <To>  Object: <Other Purpose> 3_9239
-  Role: F <Trigger>  Object: <Acceleration> 3_8943
-	Log values to device: F
