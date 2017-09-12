@@ -76,6 +76,8 @@ Object: <10%  <Battery> 3_9786
 	Trigger if battery under (%): 10
 Object: To track traffic and adjust to waves <Comment> 3_9296
 	Description: To track traffic and adjust to waves
+Object: Kommentti <Comment> 3_12473
+	Description: Kommentti
 Object: Monitor boat in harbour. <Display> 3_9622
 	Text shown: Monitor boat in harbour.
 Object: 62.21563545779646,
