@@ -216,7 +216,6 @@ Transition
 Constraints
 ==========================
 TestElement may occur at most 1 time
-Property "Name" in State must have unique values
 
 ==========================
 Subgraphs
