@@ -15,7 +15,7 @@ $vcs = 'git'
 		- In multi-user MetaEdit+, this is almost always an absolute UNC path
 		  like \\MESERVER\meshare 
 */
-$dbName = __(internal 'dbName' read) /* Replace whole line: $dbName='demo' */
+$dbName = 'IoT' /* Replace whole line: $dbName='demo' */
 $dbBaseDir = '.'
 
 /* The repository copy and snapshots will be made in 
@@ -37,7 +37,7 @@ $svnBaseDir = 'X:\svn\svn_working'
 	As above, edit the $git/svnBaseURL, and the $git/svnProjectURL 
 		will be built automatically later based on that and $dbName
 */
-$gitBaseURL = '' /* E.g. 'https://github.com/USER_OR_ORGANIZATION_NAME' or 'https://USERNAME@bitbucket.org/USERNAME' */
+$gitBaseURL = 'https://github.com/mccjpt' /* E.g. 'https://github.com/USER_OR_ORGANIZATION_NAME' or 'https://USERNAME@bitbucket.org/USERNAME' */
 $svnBaseURL = 'file:///X:/svn/svn_repos'
 
 /* Locations of executables, edit to match your setup */
