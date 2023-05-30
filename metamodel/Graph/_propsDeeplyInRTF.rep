@@ -20,7 +20,7 @@ do :()
 			@sep = __(if metatype = 'Text' then '{\par}' else ', ' endif)
 		} 
 	else
-		id
+		id%rtf
 	endif
 	'\cell}\pard \intbl {\row }' newline
 	if not @skip then

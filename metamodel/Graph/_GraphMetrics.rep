@@ -5,17 +5,17 @@ if not $Graphs =~ oid%wildsp then
 	$num_graphs++%null
 	'METRICS (graph: ' id ')' newline
 
-/* Initializes the variables */
+	/* Initializes the variables */
 	$Object_types=$Relationship_types=$Role_types=''
 	$Objects=$Relationships=$Roles='0'
 	$all_properties=$used_properties='0'
 
-/* Counting the graph's own properties */
+	/* Counting the graph's own properties */
 	subreport '_properties for metrics' run
 
-/* Counting object, relationship and role types found from model */ 
+	/* Counting object, relationship and role types found from model */ 
 
-/* Objects */
+	/* Objects */
 	foreach .() unique type {
 		variable 'Object_types' append type newline close
 		variable type '_Object' write '0' close
@@ -26,7 +26,7 @@ if not $Graphs =~ oid%wildsp then
 		$Objects++%null 
 	}
 
-/* Relationships */
+	/* Relationships */
 	foreach >() unique type {
 		variable 'Relationship_types' append type newline close
 		variable type '_Relationship' write '0' close
@@ -37,7 +37,7 @@ if not $Graphs =~ oid%wildsp then
 		$Relationships++%null 
 	}
 
-/* Roles */
+	/* Roles */
 	foreach ~() unique type {
 		variable 'Role_types' append type newline close
 		variable type '_Role' write '0' close
@@ -64,6 +64,9 @@ if not $Graphs =~ oid%wildsp then
 	@myType = 'Role'
 	_typesForMetrics(@myType)
 
+	/* Increment graph type count, but don't report here */
+	_typesForMetricsTotal('Graph', type, '1')
+
 	/* Update the total variables */
 	variable 'total_objects' append
 		'+' $Objects
@@ -78,25 +81,26 @@ if not $Graphs =~ oid%wildsp then
 		'+' $Roles
 	close 
 
-/* Report the properties */
-'Number of properties in this graph: ' $all_properties newline 
-'Number of used properties in this graph: ' $used_properties newline 
-'Number of empty properties in this graph: ' 
-math $all_properties '-' $used_properties evaluate newline newline
-
-variable 'total_properties' append
-	'+' $all_properties
-close 
-
-variable 'total_used_properties' append
-	'+' $used_properties
-close 
-
-variable 'total_empty_properties' append
-	'+' math $all_properties '-' $used_properties evaluate
-close 
-
-/* Goes through the submodels */
+	/* Report the properties */
+	'Number of properties in this graph: ' $all_properties newline 
+	'Number of used properties in this graph: ' $used_properties newline 
+	'Number of empty properties in this graph: ' 
+	math $all_properties '-' $used_properties evaluate newline newline
+	
+	variable 'total_properties' append
+		'+' $all_properties
+	close 
+	
+	variable 'total_used_properties' append
+		'+' $used_properties
+	close 
+	
+	variable 'total_empty_properties' append
+		'+' math $all_properties '-' $used_properties evaluate
+	close 
+	
+	
+	/* Goes through the submodels */
 	foreach .() {
 		do decompositions { subreport '_GraphMetrics' run }
 		do explosions { subreport '_GraphMetrics' run }

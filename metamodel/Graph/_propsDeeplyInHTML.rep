@@ -1,8 +1,8 @@
 _propsDeeplyInHTML(@parentGraphId)
 do :() 
-{	'<tr><th align="left" valign="top">'
+{	'<tr><th>'
 	to '%xml' translate containers endto 
-	'</th><td valign="top" style="white-space: pre-wrap;">'
+	'</th><td class="doc">'
 	@skip = _skipPropRecursion()
 	if contents then
 		@sep = ''

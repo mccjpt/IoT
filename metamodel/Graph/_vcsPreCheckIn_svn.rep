@@ -20,9 +20,8 @@ if $vcsRebase then
 	/* Output the pre-check-in script */
 	filename $preCheckInScript write
 		_vcsHeader()
-		if $vcsExeDir then 'SET PATH=%PATH%;' $vcsExeDir newline endif 
-		'cd /d "' $vcsWorkingDir '"' newline
-		'svn update || pause' newline
+		_osCd($vcsWorkingDir) newline
+		'svn update || ' _osPause() newline
 		'exit'
 	close
 

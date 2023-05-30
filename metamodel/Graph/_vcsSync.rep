@@ -5,9 +5,8 @@ $dbDir = __(internal 'dbDir' read)
 
 filename $syncScript write
 _vcsHeader()
-if $vcsExeDir then 'SET PATH=%PATH%;' $vcsExeDir newline endif 
-'set msg=' do __(internal 'vcsComment' read) unique '1' { id } '
-set vcsDirty=' internal 'vcsDirty' read 
+_osSet('msg', do __(internal 'vcsComment' read) unique '1' { id }) newline
+_osSet('vcsDirty', internal 'vcsDirty' read) newline
 
 subreport '_vcsSync_' $vcs run
 

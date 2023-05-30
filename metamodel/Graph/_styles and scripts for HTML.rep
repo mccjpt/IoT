@@ -1,7 +1,7 @@
 report '_styles and scripts for HTML'
 
 '
-<style>
+<style type="text/css">
 
 .Item li {
 	background-color: #FFFFFF;
@@ -24,6 +24,25 @@ report '_styles and scripts for HTML'
 	margin-top: 20px;
 	padding: 20px 10px;
 	border: 2px solid #999999;
+}
+
+table.content {
+	border-collapse: collapse;
+}
+
+table.content th, table.content td {
+	padding: 2px;
+	border: 2px solid #b0b0b0;
+	vertical-align: top; 
+	text-align: left;
+}
+
+td.doc {
+	white-space: pre-wrap;
+}
+
+img {
+	border: 0;
 }
 
 </style>

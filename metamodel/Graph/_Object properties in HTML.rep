@@ -1,8 +1,8 @@
 Report '_Object properties in HTML'
 
+@parentGraphId = __(subreport '_id and oid' run)
 foreach .() { 
-	variable 'mainObjects' append oid ' ' close
-	_tabContent(id;1 '_' oid;1)
+	_tabContent(@parentGraphId)
 }
 
 _reportExtraObjectsInHTML()

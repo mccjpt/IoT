@@ -8,6 +8,6 @@ if not $writtenStylesheet then
 endif
 '
 <title>' id%xml ' report</title>
-<link rel="stylesheet" type="text/css" href="metaedit.css">
+<link rel="stylesheet" type="text/css" href="metaedit.css" />
 '
 endreport

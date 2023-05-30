@@ -21,18 +21,21 @@ $newDBDir = __($dbBaseDir sep $newDBName)
 /* Open the check-out script file for writing... */
 filename $checkOutScript write
 _vcsHeader()
-if $vcsExeDir then 'SET PATH=%PATH%;' $vcsExeDir newline endif 
-'if not exist "' $newDBDir '" goto newDBOK
-call :pause DANGER: ' $newDBDir ' already exists, about to delete - press Enter to continue, or press Ctrl+C and answer yes to abort
-rd /s /q "' $newDBDir '"
+if sep = '\' then
+	'if not exist "' $newDBDir '" goto newDBOK' newline
+else
+	'if [ -d "' $newDBDir '" ]; then' newline
+endif
+_osPause('DANGER: ' $newDBDir ' already exists, about to delete - press Enter to continue, or press Ctrl+C and answer yes to abort')
+_osRmdir($newDBDir) '
 
-:newDBOK
+' if sep = '\' then ':newDBOK' else 'fi' endif '
 pushd "' $vcsWorkingDir '"
 '
 subreport '_vcsCheckOut_' $vcs arguments $newDBDir run
 '
 popd
-"' $metaeditExe '" fileInPatches'
+' if sep = '\' then 'start "" ' endif '"' $metaeditExe '" fileInPatches loginDB:user:password: "' $newDBName '" "' internal 'user' read '" "*"'
 
 /* ...and close the script file */
 close

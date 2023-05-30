@@ -1,5 +1,5 @@
 Report '_Relationships in RTF'
-'\keep\keepn \b {' id%trunc80 '} \b0 ' newline
+'\keep\keepn \b {' id%trunc80%rtf '} \b0 ' newline
 '{relationships:\par}'
 	if ~()
 	then  
@@ -24,7 +24,7 @@ Report '_Relationships in RTF'
 			dowhile ~() {
  				do .() { 
 					'{\field{\*\fldinst {HYPERLINK \\l "o' oid '" }}{\fldrslt \ul{' 
-					if id then id%trunc80 else '_' endif 
+					if id then id%trunc80%rtf else '_' endif 
 					'}}}\cell '
 				}
 				__id_and_type_RTF()

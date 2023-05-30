@@ -58,6 +58,7 @@ _dictionaryStyle
 _document definitions
 _extraTypesInHTML
 _extraTypesInRTF
+_fromDec
 _graph information in RTF
 _GraphMetrics
 _graphs in HTML
@@ -71,6 +72,15 @@ _nonRecursingPropertyTypes
 _Object Nesting
 _Object properties in HTML
 _Object properties in RTF
+_osCd
+_osCopy
+_osDel
+_osGet
+_osMkdir
+_osPause
+_osRem
+_osRmdir
+_osSet
 _Project_Check
 _Project_NP
 _properties for metrics
@@ -95,8 +105,10 @@ _tabContent
 _tdsForBranchLevel
 _TOC for HTML
 _TOCLevel
+_toDec
 _translators
 _typesForMetrics
+_typesForMetricsTotal
 _vcsCheckIn
 _vcsCheckIn_git
 _vcsCheckIn_svn
@@ -129,6 +141,7 @@ _vcsSync_git
 _vcsSync_svn
 _vcsWorkingDir
 _vcs_git_autocrlf
+_vcs_git_cred
 __
 __id and type
 __id_and_type_RTF

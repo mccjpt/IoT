@@ -23,7 +23,12 @@ to '%xml
 " $&quot;
 	 $&#x9;
 \
- $&#xD;'
+ $&#xA;'
+endto
+
+/* encode a file URL in href https://url.spec.whatwg.org/#url-code-points */
+to '%href
+\  $\%20'
 endto
 
 /* indent one level by translating newline to newline + tab */
@@ -104,6 +109,37 @@ endto
 
 to '%iniValue
 /([^=]+)=(.*)/ $$2'
+endto
+
+/* Split a string into a character per line. '@£§' must not be in string
+	1) convert newlines to @£§, 2) convert each char to newline + char, 
+	3) remove the initial newline, 4) convert @£§ back to newline 
+*/
+to '%chars
+\' newline ' $@£§
+/./ $\' newline '$0
+/^' newline '/ $
+$@\' newline '£\' newline '§ $'
+endto 
+
+/* Map a single character to its numeric value, e.g. 5->5, f->15 */
+to
+	'%val' newline
+	'0-9 *' newline
+	@ix = '10'
+	do 'abcdefghijklmnopqrstuvwxyz*'%chars
+	{	id ' $' @ix++ newline
+	}
+endto
+
+/* Map a decimal value from 0-35 into a single character, e.g. 5->5, 15->f */
+to
+	'%char' newline
+	'0-9 *' newline
+	@ix = '10' 
+	do 'abcdefghijklmnopqrstuvwxyz'%chars
+	{	'$' @ix++ ' $' id newline
+	}
 endto
 
 endreport

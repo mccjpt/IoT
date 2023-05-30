@@ -10,23 +10,32 @@ filename 'vcsComment.txt' encoding 'UTF-8' write @vcsComment close
 /* Output the check-in script */
 filename $checkInScript write
 _vcsHeader()
-if $vcsExeDir then 'SET PATH=%PATH%;' $vcsExeDir newline endif 
-'set mepath=%cd%' newline
+if sep = '\' then
+	'set mepath=%CD%' newline
+else
+	'export mepath=$PWD' newline
+endif
 if $use7zip OR $dbBackupDir <> __($vcsWorkingDir sep $dbBackupName) then
 	if $use7zip then
-		'"' $7zipExe '" a -r "' $vcsWorkingDir sep $dbBackupName '.7z" "' $dbBackupDir sep '*" || pause' newline
+		'"' $7zipExe '" a -r "' $vcsWorkingDir sep $dbBackupName '.7z" "' $dbBackupDir sep '*" || ' _osPause() newline
 	else
-		'xcopy /e /i /%xcopyDisplay% /z "' $dbBackupDir '" "' $vcsWorkingDir sep $dbBackupName '" || pause' newline
+		_osCopy($dbBackupDir, $vcsWorkingDir sep $dbBackupName) ' || ' _osPause() newline
 	endif
-	'rd /s /q "' $dbBackupDir '"' newline
+	
+	_osRmdir($dbBackupDir) newline
 endif
-'cd /d "' $vcsWorkingDir '"' newline
+
+_osCd($vcsWorkingDir) newline
 
 subreport '_vcsCheckIn_' $vcs run
 
 if not $vcsDebug then
 	newline
-	'if not errorlevel 1 exit'
+	if sep = '\' then
+		'if not errorlevel 1 exit'
+	else
+		'if [ $? -eq 0 ]; then exit; fi'
+	endif
 endif
 
 /* ...and close the script file */

@@ -1,8 +1,7 @@
 Report '_Object properties in RTF'
 foreach .()
 {	
-	variable 'mainObjects' append oid ' ' close
-	'\s3{{\*\bkmkstart o' oid '}' id%trunc80 '{\*\bkmkend o' oid '}: ' type '{\par}}\pard\plain' newline
+	'\s3{{\*\bkmkstart o' oid '}' id%trunc80%rtf '{\*\bkmkend o' oid '}: ' type%rtf '{\par}}\pard\plain' newline
 	'{\keep\keepn Properties:\par}' newline
 	@propertiesFound = 'F'
 	do :() {	@propertiesFound = 'T' }

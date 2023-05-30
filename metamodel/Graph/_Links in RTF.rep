@@ -1,5 +1,5 @@
 Report '_Links in RTF'
-'\keep\keepn \b {' id%trunc80 '} \b0' newline
+'\keep\keepn \b {' id%trunc80%rtf '} \b0' newline
 '{links:\par}' newline
 	'\trowd \trgaph109'
 	subreport '_RTF table cell definitions' run	'\cellx3500' newline
@@ -14,7 +14,7 @@ Report '_Links in RTF'
 	then 	
 		do decompositions
 		{
-		'{\field{\*\fldinst {HYPERLINK \\l "g' oid '" }}{\fldrslt \ul{' id '}}}' newline
+		'{\field{\*\fldinst {HYPERLINK \\l "g' oid '" }}{\fldrslt \ul{' id%rtf '}}}' newline
 		}
 	else 	'{none}'
 	endif
@@ -25,7 +25,7 @@ Report '_Links in RTF'
 '\keep\keepn {Explosions\cell }'
 	if explosions then 	
 		dowhile explosions
-		{	'{\field{\*\fldinst {HYPERLINK \\l "g' oid '" }}{\fldrslt \ul{' id
+		{	'{\field{\*\fldinst {HYPERLINK \\l "g' oid '" }}{\fldrslt \ul{' id%rtf
 			if 'always true' then '}}}' endif /* This comes even the last time through the dowhile loop */
 			'{\par}'
 		}

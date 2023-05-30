@@ -1,8 +1,8 @@
 Report '_RTF documentation cover page'
 '{\widctlpar\adjustright 
 {\par \par \par \par \par \par \par \par \par \par \par \par \par \par \par \par \par \par \par \par \par}\pard '
-'\qc\widctlpar\adjustright \b\fs40{' id '\par Documentation Report}\b0 \par \par \par \par \par }\trowd\pard\plain' newline
-'{\*\docvar {Document_title}{' id%file '}}' newline
+'\qc\widctlpar\adjustright \b\fs40{' id%rtf '\par Documentation Report}\b0 \par \par \par \par \par }\trowd\pard\plain' newline
+'{\*\docvar {Document_title}{' id%file%rtf '}}' newline
 '\trqc\trgaph108\trleft1560\trkeep \clvertalt\cltxlrtb \cellx3544\clvertalt\cltxlrtb \cellx8364\pard\plain '
 
 '\widctlpar\intbl\adjustright {Filename:\cell}' newline
