@@ -24,7 +24,7 @@ $dbBaseDir = '.'
 	$git/svnBaseDir is the base directory for all such directories. Each 
 		MetaEdit+ repository is a subdirectory automatically called $dbName.
 */
-$gitBaseDir = 'X:\git'
+/* $gitBaseDir = 'X:\git' */
 $svnBaseDir = 'X:\svn\svn_working'
 
 /*	$gitBaseURL is a parent directory for multiple remote git repositories, 
@@ -37,7 +37,7 @@ $svnBaseDir = 'X:\svn\svn_working'
 	As above, edit the $git/svnBaseURL, and the $git/svnProjectURL 
 		will be built automatically later based on that and $dbName
 */
-$gitBaseURL = 'https://github.com/mccjpt' /* E.g. 'https://github.com/USER_OR_ORGANIZATION_NAME' or 'https://USERNAME@bitbucket.org/USERNAME' */
+/* $gitBaseURL = 'https://github.com/mccjpt' /* E.g. 'https://github.com/USER_OR_ORGANIZATION_NAME' or 'https://USERNAME@bitbucket.org/USERNAME' */
 $svnBaseURL = 'file:///X:/svn/svn_repos'
 
 /* Locations of executables, edit to match your setup */
